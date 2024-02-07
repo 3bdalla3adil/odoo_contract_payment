@@ -22,16 +22,19 @@ class ContractPayment(models.Model):
     remain_price = fields.Float(string='Remain Price', compute="_compute_remain_price")
     total_price  = fields.Float(string='Total Price')
     payment_date = fields.Date (string='Payment Date')
+    all_price    = fields.Float("All Amount",compute="_compute_all_price")
 
 
-    @api.onchange("total_price","paid_price")
-    def _compute_remain_price(self):
+    @api.onchange("total_price","all_price")
+    def _compute_all_price(self):
         # for all record in object
+        all_amount = 0
         for record in self:
 
             # Calculate Paid Price # Calculate Remaining Price
+            all_amount += record.total_price
+            record.all_price = all_amount
 
-            record.remain_price = record.total_price - record.paid_price
 
 
     @api.onchange("total_price","paid_price")
