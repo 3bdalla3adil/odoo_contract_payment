@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<!--     Top Menu Contract Management -->
+        <menuitem id="menu_contract_root" name="Contracts"/>
+        
+        <menuitem id="contract_menu_1" name="Data Entry" action="action_contract_payment" parent="menu_contract_root"/>
+        <menuitem id="contract_menu_2" name="Moves" action="action_contract_move" parent="menu_contract_root"/>
+        <menuitem id="contract_menu_3" name="Summary" action="action_contract_summary" parent="menu_contract_root"/>
+
+	</data>
+</odoo>
