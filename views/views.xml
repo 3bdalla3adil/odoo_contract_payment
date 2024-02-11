@@ -6,16 +6,18 @@
         <record id="contract_payment_tree_view" model="ir.ui.view">
             <field name="name">contract.payment.entry.tree</field>
             <field name="model">contract.payment</field>
-            <field name="inherit_id" ref="account.view_out_invoice_tree"/>
             <field name="arch" type="xml">
-                <xpath expr="//button[@name='action_register_payment']" position="replace">
-                    <!-- your custom button here -->
-                </xpath>
-                <xpath expr="//tree" position="attributes">
-                    <attribute name="editable">bottom</attribute>
-                </xpath>
+                <tree editable="bottom">
+                    <field name="contract_date" required="1"/>
+                    <field name="partner_id" required="1"/>
+                    <field name="due_date" required="1"/>
+                    <field name="payment_rate" required="1"/>
+                    <field name="payment_status" required="1"/>
+                    <field name="paid_price" sum="Total"/>
+                    <field name="total_price" sum="Total" required="1"/>
+                    <field name="payment_date" required="1"/>
+                </tree>
             </field>
-            <field name="mode">primary</field>
         </record>
 
 
@@ -23,8 +25,16 @@
         <record id="contract_move_tree_view" model="ir.ui.view">
             <field name="name">contract.payment.due.tree</field>
             <field name="model">contract.payment</field>
-            <field name="inherit_id" ref="contract_summary_tree_view"/>
-            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <tree create="False">
+                    <field name="partner_id"/>
+                    <field name="due_date"/>
+                    <field name="payment_rate"/>
+                    <field name="payment_status"/>
+                    <field name="paid_price" sum="Total"/>
+                    <field name="payment_date"/>
+                </tree>
+            </field>
         </record>
 
 
@@ -32,9 +42,13 @@
         <record id="contract_summary_tree_view" model="ir.ui.view">
             <field name="name">contract.payment.summary.tree</field>
             <field name="model">contract.payment</field>
-            <field name="inherit_id" ref="contract_payment_tree_view"/>
             <field name="arch" type="xml">
-
+                <tree create="False">
+                    <field name="partner_id"/>
+                    <field name="paid_price" sum="Total"/>
+                    <field name="remain_price" sum="Total"/>
+                    <field name="total_price" sum="Total"/>
+                </tree>
             </field>
         </record>
 
