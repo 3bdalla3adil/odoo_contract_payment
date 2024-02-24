@@ -1,5 +1,5 @@
 {
-    'name':'Contract Payment Module',
+    'name':'Contract Payment',
     'version':'1.0',
     'category':'Custom',
     'author':'Eng.Abdulla Bashir',
